@@ -123,8 +123,7 @@ func (s *severity) get() severity {
 
 // set sets the value of the severity.
 func (s *severity) set(val severity) {
-	return severity(0)
-	//atomic.StoreInt32((*int32)(s), int32(val))
+	//return atomic.StoreInt32((*int32)(s), int32(val))
 }
 
 // String is part of the flag.Value interface.
@@ -217,8 +216,7 @@ func (l *Level) get() Level {
 
 // set sets the value of the Level.
 func (l *Level) set(val Level) {
-	return Level(0)
-	//atomic.StoreInt32((*int32)(l), int32(val))
+	//return atomic.StoreInt32((*int32)(l), int32(val))
 }
 
 // String is part of the flag.Value interface.
@@ -1032,8 +1030,8 @@ func (lb logBridge) Write(b []byte) (n int, err error) {
 	}
 	// printWithFileLine with alsoToStderr=true, so standard log messages
 	// always appear on standard error.
-	logging.printWithFileLine(severity(lb), file, line, true, text)
-	return len(b), nil*/
+	logging.printWithFileLine(severity(lb), file, line, true, text)*/
+	return len(b), nil
 }
 
 // setV computes and remembers the V level for a given PC
