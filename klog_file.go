@@ -36,10 +36,10 @@ var MaxSize uint64 = 1024 * 1024 * 1800
 var logDirs []string
 
 func createLogDirs() {
-	if logging.logDir != "" {
+	/*if logging.logDir != "" {
 		logDirs = append(logDirs, logging.logDir)
 	}
-	logDirs = append(logDirs, os.TempDir())
+	logDirs = append(logDirs, os.TempDir())*/
 }
 
 var (
@@ -50,7 +50,7 @@ var (
 )
 
 func init() {
-	h, err := os.Hostname()
+	/*h, err := os.Hostname()
 	if err == nil {
 		host = shortHostname(h)
 	}
@@ -61,22 +61,22 @@ func init() {
 	}
 
 	// Sanitize userName since it may contain filepath separators on Windows.
-	userName = strings.Replace(userName, `\`, "_", -1)
+	userName = strings.Replace(userName, `\`, "_", -1)*/
 }
 
 // shortHostname returns its argument, truncating at the first period.
 // For instance, given "www.google.com" it returns "www".
 func shortHostname(hostname string) string {
-	if i := strings.Index(hostname, "."); i >= 0 {
+	/*if i := strings.Index(hostname, "."); i >= 0 {
 		return hostname[:i]
-	}
+	}*/
 	return hostname
 }
 
 // logName returns a new log file name containing tag, with start time t, and
 // the name for the symlink for tag.
 func logName(tag string, t time.Time) (name, link string) {
-	name = fmt.Sprintf("%s.%s.%s.log.%s.%04d%02d%02d-%02d%02d%02d.%d",
+	/*name = fmt.Sprintf("%s.%s.%s.log.%s.%04d%02d%02d-%02d%02d%02d.%d",
 		program,
 		host,
 		userName,
@@ -88,7 +88,8 @@ func logName(tag string, t time.Time) (name, link string) {
 		t.Minute(),
 		t.Second(),
 		pid)
-	return name, program + "." + tag
+	return name, program + "." + tag*/
+	return "", ""
 }
 
 var onceLogDirs sync.Once
@@ -98,7 +99,7 @@ var onceLogDirs sync.Once
 // successfully, create also attempts to update the symlink for that tag, ignoring
 // errors.
 func create(tag string, t time.Time) (f *os.File, filename string, err error) {
-	if logging.logFile != "" {
+	/*if logging.logFile != "" {
 		f, err := os.Create(logging.logFile)
 		if err == nil {
 			return f, logging.logFile, nil
@@ -121,6 +122,6 @@ func create(tag string, t time.Time) (f *os.File, filename string, err error) {
 			return f, fname, nil
 		}
 		lastErr = err
-	}
+	}*/
 	return nil, "", fmt.Errorf("log: cannot create log: %v", lastErr)
 }
